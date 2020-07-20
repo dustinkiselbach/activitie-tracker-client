@@ -12,24 +12,23 @@ import {
   PARSE_ACTIVITY_RUN_METRIC,
   PARSE_ACTIVITY_RUN_IMPERIAL,
   PARSE_ACTIVITY_RIDE_METRIC,
-  PARSE_ACTIVITY_RIDE_IMPERIAL
+  PARSE_ACTIVITY_RIDE_IMPERIAL,
 } from '../types'
 
-const ActivitiesState = props => {
+const ActivitiesState = (props) => {
   const initialState = {
     activities: [],
     pagination: {},
     activity: null,
     activitiesForCalendar: null,
     activityParsed: false,
-
-    loading: false
+    loading: false,
   }
 
   const [state, dispatch] = useReducer(activitiesReducer, initialState)
 
   // Get all acitivities associated with logged in user
-  const getActivities = async page => {
+  const getActivities = async (page) => {
     // if lazy loading don't want loading icon every time
     if (page === 1) {
       setLoading()
@@ -42,7 +41,7 @@ const ActivitiesState = props => {
       dispatch({ type: GET_ACTIVITIES, payload: res.data.activities })
       dispatch({
         type: GET_ACTIVITIES_PAGINATION,
-        payload: res.data.pagination
+        payload: res.data.pagination,
       })
       console.log(res)
     } catch (err) {
@@ -51,7 +50,7 @@ const ActivitiesState = props => {
   }
 
   // get activity by activity id
-  const getActivity = async id => {
+  const getActivity = async (id) => {
     try {
       const res = await axios.get(
         `https://agile-retreat-42559.herokuapp.com//api/v1/activities/${id}`
@@ -63,21 +62,22 @@ const ActivitiesState = props => {
     }
   }
 
-  // Get all acitivities associated with logged in user
+  // Get all activities associated with logged in user
   const getActivitiesByDate = async (year, unit) => {
     setLoading()
 
     try {
       const res = await axios.get(
-        `https://agile-retreat-42559.herokuapp.com//api/v1/activities?start_date=${year}-01-01&end_date=${year +
-          1}-01-01`
+        `https://agile-retreat-42559.herokuapp.com//api/v1/activities?start_date=${year}-01-01&end_date=${
+          year + 1
+        }-01-01`
       )
 
       console.log(res)
       const parsed = weekParser(res.data.activities, year, unit)
       dispatch({
         type: GET_ACTIVITIES_FOR_CALENDAR,
-        payload: parsed
+        payload: parsed,
       })
     } catch (err) {
       console.log(err.response.data)
@@ -97,7 +97,7 @@ const ActivitiesState = props => {
   }
 
   // intergrate with strava
-  const intergrateStrava = async (token, history) => {
+  const integrateStrava = async (token, history) => {
     try {
       const res = await axios.post(
         `https://agile-retreat-42559.herokuapp.com//api/v1/auth?scope=read,activity:read_all,read_all&code=${token}`
@@ -149,7 +149,7 @@ const ActivitiesState = props => {
         getActivitiesByDate,
         parseActivity,
         syncActivities,
-        intergrateStrava
+        integrateStrava,
       }}
     >
       {props.children}

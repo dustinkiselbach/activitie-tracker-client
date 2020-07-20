@@ -15,7 +15,7 @@ const stravaURL =
 const Dashboard = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: '400px 0px'
+    rootMargin: '400px 0px',
   })
 
   const [pages, setPages] = useState([1])
@@ -26,7 +26,7 @@ const Dashboard = () => {
     pagination,
     syncActivities,
     getActivities,
-    loading
+    loading,
   } = activitiesContext
 
   const userContext = useContext(UserContext)
@@ -37,7 +37,7 @@ const Dashboard = () => {
     profile,
     getProfile,
     changeUnitPreference,
-    imperialToggle
+    imperialToggle,
   } = profileContext
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const Dashboard = () => {
                 <div className='sidebar__top'>
                   <h3>{!imperialToggle ? 'Metric' : 'Imperial'}</h3>
                   <Toggler
-                    onClick={e => {
+                    onClick={(e) => {
                       e.preventDefault()
 
                       changeUnitPreference()
@@ -116,10 +116,10 @@ const Dashboard = () => {
             </>
           ) : (
             // there are no activities
-            <div>
-              You have no activities, please intergrate{' '}
+            <div className='container card card__main--left'>
+              You have no activities, please integrate
               <a href={stravaURL} className='btn'>
-                Intergrate
+                Integrate
               </a>
             </div>
           )}

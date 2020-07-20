@@ -4,20 +4,20 @@ import { motion } from 'framer-motion'
 
 const transition = {
   duration: 0.2,
-  ease: [0.6, 0.05, -0.01, 0.9]
+  ease: [0.6, 0.05, -0.01, 0.9],
 }
 
 const variants = {
   hidden: {
     opacity: 0,
     y: -50,
-    transition
+    transition,
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition
-  }
+    transition,
+  },
 }
 
 const NavUser = ({ logoutUser }) => {
@@ -39,6 +39,9 @@ const NavUser = ({ logoutUser }) => {
         <NavLink to='/login' onClick={logoutUser}>
           Logout
         </NavLink>
+      </li>
+      <li className='sublist--item'>
+        <NavLink to='/strava'>Strava</NavLink>
       </li>
     </motion.ul>
   )

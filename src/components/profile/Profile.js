@@ -18,8 +18,8 @@ const Profile = ({ match }) => {
     if (Object.keys(match.params).length > 0) {
       getProfile(match.params.id)
     } else {
-      // get profile by auth headers
-      getUserProfile()
+      // get profile by state id
+      getProfile(profile.id)
     }
   }, [])
 

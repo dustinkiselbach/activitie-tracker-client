@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const [toggleNav, setToggleNav] = useState(false)
 
-  const showUserNav = e => {
+  const showUserNav = (e) => {
     e.preventDefault()
     setToggleNav(!toggleNav)
   }
@@ -24,7 +24,7 @@ const Navbar = () => {
         <span
           onClick={showUserNav}
           className={classnames('material-icons', {
-            toggled: toggleNav
+            toggled: toggleNav,
           })}
         >
           expand_more
@@ -51,7 +51,7 @@ const Navbar = () => {
     <>
       <nav className='navbar'>
         <a href='/#' className='navbar__brand'>
-          Acitvies Tracker
+          Activity Tracker
           <span className='material-icons'>explore</span>
         </a>
         {isAuthenticated && (

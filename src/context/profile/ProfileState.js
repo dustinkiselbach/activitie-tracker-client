@@ -4,11 +4,11 @@ import axios from 'axios'
 import profileReducer from './profileReducer'
 import { GET_PROFILE, CHANGE_UNIT_PREFERENCE, GET_BIOMETRICS } from '../types'
 
-const ProfileState = props => {
+const ProfileState = (props) => {
   const initialState = {
     profile: null,
     biometrics: null,
-    imperialToggle: false
+    imperialToggle: false,
   }
 
   const [state, dispatch] = useReducer(profileReducer, initialState)
@@ -24,7 +24,7 @@ const ProfileState = props => {
   const getUserProfile = async () => {
     try {
       const res = await axios.get(
-        'https://agile-retreat-42559.herokuapp.com//api/v1/users'
+        'https://agile-retreat-42559.herokuapp.com/api/v1/users'
       )
       dispatch({ type: GET_PROFILE, payload: res.data })
       console.log(res)
@@ -33,10 +33,10 @@ const ProfileState = props => {
     }
   }
   // get profile
-  const getProfile = async id => {
+  const getProfile = async (id) => {
     try {
       const res = await axios.get(
-        `https://agile-retreat-42559.herokuapp.com//api/v1/users/${id}`
+        `https://agile-retreat-42559.herokuapp.com/api/v1/users/${id}`
       )
       dispatch({ type: GET_PROFILE, payload: res.data })
       console.log(res)
@@ -104,7 +104,7 @@ const ProfileState = props => {
         getBiometrics,
         setBiometrics,
         updateProfile,
-        changeUnitPreference
+        changeUnitPreference,
       }}
     >
       {props.children}

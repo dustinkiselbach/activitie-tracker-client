@@ -8,16 +8,16 @@ import SettingsAccount from './SettingsAccount'
 const navItems = [
   {
     title: 'My Profile',
-    id: 'profile'
+    id: 'profile',
   },
   {
     title: 'My Account',
-    id: 'account'
+    id: 'account',
   },
   {
     title: 'Display Preferences',
-    id: 'display'
-  }
+    id: 'display',
+  },
 ]
 
 const Settings = () => {
@@ -31,7 +31,7 @@ const Settings = () => {
     getUserProfile,
     updateProfile,
     getBiometrics,
-    setBiometrics
+    setBiometrics,
   } = profileContext
   // can only update name, email weight height
   // const updatableProfile = {
@@ -49,7 +49,7 @@ const Settings = () => {
   if (biometrics) {
     updatableProfile = {
       weight: biometrics[0].weight,
-      height: biometrics[0].height
+      height: biometrics[0].height,
     }
   }
 
